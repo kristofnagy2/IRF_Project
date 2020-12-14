@@ -18,8 +18,18 @@ namespace IRF_project_x8lz9u
             InitializeComponent();
 
             var valuta = new MNBArfolyamServiceSoapClient();
-          
 
+            var inquiy = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = "USD",
+                startDate = "2020-11-01",
+                endDate = "2020-12-03"
+
+            };
+
+            var feedback = valuta.GetExchangeRates(inquiy);
+
+            var end = feedback.GetExchangeRatesResult;
 
         }
     }
