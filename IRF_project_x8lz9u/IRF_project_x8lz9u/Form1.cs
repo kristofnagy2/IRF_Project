@@ -1,4 +1,5 @@
-﻿using IRF_project_x8lz9u.valuataservice;
+﻿using IRF_project_x8lz9u.Entities;
+using IRF_project_x8lz9u.valuataservice;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,15 @@ namespace IRF_project_x8lz9u
 {
     public partial class Form1 : Form
     {
+
+        BindingList<Money> moneydata = new BindingList<Money>();
+
+        
         public Form1()
         {
             InitializeComponent();
+
+            dataGridView1.DataSource = moneydata;
 
             var valuta = new MNBArfolyamServiceSoapClient();
 
