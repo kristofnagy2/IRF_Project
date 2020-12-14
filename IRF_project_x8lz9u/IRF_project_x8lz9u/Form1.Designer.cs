@@ -62,10 +62,17 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "GBP",
+            "EUR",
+            "HKD",
+            "CHF",
+            "RON"});
             this.comboBox1.Location = new System.Drawing.Point(503, 124);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 3;
+            this.comboBox1.Text = "USD";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1
