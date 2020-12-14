@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,9 @@ namespace IRF_project_x8lz9u
     public partial class Form1 : Form
     {
 
-        
 
-        
+
+
         public Form1()
         {
             InitializeComponent();
@@ -64,11 +65,64 @@ namespace IRF_project_x8lz9u
                 var value = decimal.Parse(childElement.InnerText);
                 if (unit != 0)
                     money.Value = value / unit;
-            };
-
+            }
         }
 
+            private void writeCSV(DataGridView gridIn, string outputFile)
+            {
+                
+                if (gridIn.RowCount > 0)
+                {
+                    string value = "";
+                    DataGridViewRow dr = new DataGridViewRow();
+                    StreamWriter swOut = new StreamWriter(outputFile);
 
+                    
+                    for (int i = 0; i <= gridIn.Columns.Count - 1; i++)
+                    {
+                        if (i > 0)
+                        {
+                            swOut.Write(",");
+                        }
+                        swOut.Write(gridIn.Columns[i].HeaderText);
+                    }
+
+                    swOut.WriteLine();
+
+                    for (int j = 0; j <= gridIn.Rows.Count - 1; j++)
+                    {
+                        if (j > 0)
+                        {
+                            swOut.WriteLine();
+                        }
+
+                        dr = gridIn.Rows[j];
+
+                        for (int i = 0; i <= gridIn.Columns.Count - 1; i++)
+                        {
+                            if (i > 0)
+                            {
+                                swOut.Write(",");
+                            }
+
+                            value = dr.Cells[i].Value.ToString();
+                            
+                            value = value.Replace(',', ' ');
+                           
+                            value = value.Replace(Environment.NewLine, " ");
+
+                            swOut.Write(value);
+                        }
+                    }
+                    swOut.Close();
+                }
+            }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            writeCSV(dataGridView1, "result.csv");
+            
+        }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -82,7 +136,18 @@ namespace IRF_project_x8lz9u
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            fv();
         }
     }
-}
+    };
+
+           
+
+
+
+
+
+
+        
+    
+
