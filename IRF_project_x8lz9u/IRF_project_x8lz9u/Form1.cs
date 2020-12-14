@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IRF_project_x8lz9u.valuataservice;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace IRF_project_x8lz9u
         public Form1()
         {
             InitializeComponent();
+
+            var valuta = new MNBArfolyamServiceSoapClient();
+          
+
+
         }
     }
 }
