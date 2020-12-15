@@ -11,7 +11,9 @@ namespace IRF_project_x8lz9u.Entities
 
         public DateTime Date { get; set; }
         public string Currency { get; set; }
-
         public decimal Value { get; set; }
+
+       
+        
     }
 }
