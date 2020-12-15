@@ -27,6 +27,8 @@ namespace IRF_project_x8lz9u
 
         }
 
+        
+
         private void fv()
         {
             BindingList<Money> moneydata = new BindingList<Money>();
@@ -73,7 +75,7 @@ namespace IRF_project_x8lz9u
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
             int row_count = dataGridView1.RowCount;
             int lines_count = dataGridView1.Rows[0].Cells.Count;
             
@@ -85,14 +87,20 @@ namespace IRF_project_x8lz9u
                 for (int cell_index = 0; cell_index <= lines_count - 1; cell_index++)
                 {
                     MessageBox.Show(dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString());
+
+
+
                     textBox1.Text = textBox1.Text + dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString() + ",";
+
                 }
+
+                
                 textBox1.Text = textBox1.Text + "\r\n";
 
             }
+  
 
             System.IO.File.WriteAllText(@"C:/Users/Nagy Kristóf/Desktop/export.csv", textBox1.Text);
-
 
         }
 
@@ -123,6 +131,8 @@ namespace IRF_project_x8lz9u
             textBox1.Multiline = true;
             
         }
+
+        
     }
 }
 
