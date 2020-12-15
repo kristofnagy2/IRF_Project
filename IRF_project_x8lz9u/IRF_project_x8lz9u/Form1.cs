@@ -17,7 +17,6 @@ namespace IRF_project_x8lz9u
     public partial class Form1 : Form
     {
 
-        TextBox textbox_export = new TextBox();
 
 
         public Form1()
@@ -86,13 +85,13 @@ namespace IRF_project_x8lz9u
                 for (int cell_index = 0; cell_index <= lines_count - 1; cell_index++)
                 {
                     MessageBox.Show(dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString());
-                    textbox_export.Text = textbox_export.Text + dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString() + ",";
+                    textBox1.Text = textBox1.Text + dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString() + ",";
                 }
-                textbox_export.Text = textbox_export.Text + "\r\n";
+                textBox1.Text = textBox1.Text + "\r\n";
 
             }
 
-            //System.IO.File.WriteAllText(@"C:/Users/Nagy Kristóf/Desktop/export.csv", listBox1.Text);
+            System.IO.File.WriteAllText(@"C:/Users/Nagy Kristóf/Desktop/export.csv", textBox1.Text);
 
 
         }
@@ -119,10 +118,10 @@ namespace IRF_project_x8lz9u
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textbox_export.Size = new Size(300, 340);
-            textbox_export.Location = new Point(470, 80);
-            textbox_export.Multiline = true;
-            this.Controls.Add(textbox_export);
+            textBox1.Size = new Size(300, 340);
+            textBox1.Location = new Point(470, 80);
+            textBox1.Multiline = true;
+            
         }
     }
 }
