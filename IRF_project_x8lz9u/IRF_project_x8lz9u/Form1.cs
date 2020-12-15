@@ -17,7 +17,7 @@ namespace IRF_project_x8lz9u
     public partial class Form1 : Form
     {
 
-
+        TextBox textbox_export = new TextBox();
 
 
         public Form1()
@@ -25,6 +25,7 @@ namespace IRF_project_x8lz9u
             InitializeComponent();
 
             fv();
+
         }
 
         private void fv()
@@ -68,63 +69,40 @@ namespace IRF_project_x8lz9u
             }
         }
 
-            private void writeCSV(DataGridView gridIn, string outputFile)
-            {
-                
-                if (gridIn.RowCount > 0)
-                {
-                    string value = "";
-                    DataGridViewRow dr = new DataGridViewRow();
-                    StreamWriter swOut = new StreamWriter(outputFile);
 
-                    
-                    for (int i = 0; i <= gridIn.Columns.Count - 1; i++)
-                    {
-                        if (i > 0)
-                        {
-                            swOut.Write(",");
-                        }
-                        swOut.Write(gridIn.Columns[i].HeaderText);
-                    }
 
-                    swOut.WriteLine();
-
-                    for (int j = 0; j <= gridIn.Rows.Count - 1; j++)
-                    {
-                        if (j > 0)
-                        {
-                            swOut.WriteLine();
-                        }
-
-                        dr = gridIn.Rows[j];
-
-                        for (int i = 0; i <= gridIn.Columns.Count - 1; i++)
-                        {
-                            if (i > 0)
-                            {
-                                swOut.Write(",");
-                            }
-
-                            value = dr.Cells[i].Value.ToString();
-                            
-                            value = value.Replace(',', ' ');
-                           
-                            value = value.Replace(Environment.NewLine, " ");
-
-                            swOut.Write(value);
-                        }
-                    }
-                    swOut.Close();
-                }
-            }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            writeCSV(dataGridView1, "result.csv");
+
+            int row_count = dataGridView1.RowCount;
+            int lines_count = dataGridView1.Rows[0].Cells.Count;
             
+
+            for (int row_index = 0; row_index <= row_count - 2; row_index++)
+            {
+                
+
+                for (int cell_index = 0; cell_index <= lines_count - 1; cell_index++)
+                {
+                    MessageBox.Show(dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString());
+                    textbox_export.Text = textbox_export.Text + dataGridView1.Rows[row_index].Cells[cell_index].Value.ToString() + ",";
+                }
+                textbox_export.Text = textbox_export.Text + "\r\n";
+
+            }
+
+            //System.IO.File.WriteAllText(@"C:/Users/Nagy Kristóf/Desktop/export.csv", listBox1.Text);
+
+
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+
+          
+
+         
+
+        private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
         {
             fv();
         }
@@ -138,8 +116,17 @@ namespace IRF_project_x8lz9u
         {
             fv();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textbox_export.Size = new Size(300, 340);
+            textbox_export.Location = new Point(470, 80);
+            textbox_export.Multiline = true;
+            this.Controls.Add(textbox_export);
+        }
     }
-    };
+}
+
 
            
 
